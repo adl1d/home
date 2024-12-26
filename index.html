@@ -54,8 +54,15 @@
         }
         /* Sliding animation */
         .slide-out {
-            transform: translateX(100%);
-            transition: transform 0.5s ease-in-out;
+            animation: slide-out 0.5s forwards;
+        }
+        @keyframes slide-out {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
         }
     </style>
 </head>
@@ -108,14 +115,26 @@
             event.preventDefault();
             const targetUrl = event.target.href;
 
-            // Add slide-out class to the body
+            // Add slide-out animation class to the body
             document.body.classList.add('slide-out');
+
+            // Save the current state before navigating
+            history.replaceState({ animated: true }, "");
 
             // Navigate to the target URL after the animation
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500);
         }
+
+        // Check if the back navigation happened
+        window.addEventListener("load", () => {
+            const state = history.state;
+            if (state && state.animated) {
+                // Reset the animation state when returning
+                document.body.classList.remove('slide-out');
+            }
+        });
     </script>
 </body>
 </html>
