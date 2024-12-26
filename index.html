@@ -9,6 +9,7 @@
         body {
             background-color: #f8f9fa;
             font-family: 'Roboto', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll during animation */
         }
         header {
             background-color: #d32f2f;
@@ -51,10 +52,10 @@
             margin-top: 10px;
             font-size: 0.85rem;
         }
-        /* Fade out animation */
-        .fade-out {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+        /* Sliding animation */
+        .slide-out {
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -66,35 +67,35 @@
         <h2 class="mb-4" style="color: #d32f2f;">Select an Algorithm</h2>
         <div class="row">
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/vernam" class="btn" onclick="startTransition(event)">Vernam Cipher</a>
+                <a href="https://adl1d.github.io/vernam" class="btn" onclick="startSlidingTransition(event)">Vernam Cipher</a>
             </div>
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/hill" class="btn" onclick="startTransition(event)">Hill Cipher</a>
+                <a href="https://adl1d.github.io/hill" class="btn" onclick="startSlidingTransition(event)">Hill Cipher</a>
             </div>
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/vigenere" class="btn" onclick="startTransition(event)">Vigenère Cipher</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="https://adl1d.github.io/autokey" class="btn" onclick="startTransition(event)">Autokey Cipher</a>
-            </div>
-            <div class="col-md-4">
-                <a href="https://adl1d.github.io/elgamal" class="btn" onclick="startTransition(event)">ElGamal Cipher</a>
-            </div>
-            <div class="col-md-4">
-                <a href="https://adl1d.github.io/seasar" class="btn" onclick="startTransition(event)">Caesar Cipher</a>
+                <a href="https://adl1d.github.io/vigenere" class="btn" onclick="startSlidingTransition(event)">Vigenère Cipher</a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/playfair" class="btn" onclick="startTransition(event)">Playfair Cipher</a>
+                <a href="https://adl1d.github.io/autokey" class="btn" onclick="startSlidingTransition(event)">Autokey Cipher</a>
             </div>
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/monoalphabetic" class="btn" onclick="startTransition(event)">Monoalphabetic Cipher</a>
+                <a href="https://adl1d.github.io/elgamal" class="btn" onclick="startSlidingTransition(event)">ElGamal Cipher</a>
             </div>
             <div class="col-md-4">
-                <a href="https://adl1d.github.io/polyalphabetic" class="btn" onclick="startTransition(event)">Polyalphabetic Cipher</a>
+                <a href="https://adl1d.github.io/seasar" class="btn" onclick="startSlidingTransition(event)">Caesar Cipher</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="https://adl1d.github.io/playfair" class="btn" onclick="startSlidingTransition(event)">Playfair Cipher</a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://adl1d.github.io/monoalphabetic" class="btn" onclick="startSlidingTransition(event)">Monoalphabetic Cipher</a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://adl1d.github.io/polyalphabetic" class="btn" onclick="startSlidingTransition(event)">Polyalphabetic Cipher</a>
             </div>
         </div>
     </main>
@@ -103,12 +104,12 @@
         <small>By Adel Mohammad</small>
     </footer>
     <script>
-        function startTransition(event) {
+        function startSlidingTransition(event) {
             event.preventDefault();
             const targetUrl = event.target.href;
 
-            // Add fade-out class to the body
-            document.body.classList.add('fade-out');
+            // Add slide-out class to the body
+            document.body.classList.add('slide-out');
 
             // Navigate to the target URL after the animation
             setTimeout(() => {
